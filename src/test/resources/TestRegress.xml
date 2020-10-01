@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test api " parallel="tests" thread-count="5" >
+
+    <test name="Test Test Api Message Negative">
+        <classes>
+            <class name="api.TestApiMessageNegative"/>
+        </classes>
+    </test>
+
+    <test name="Test Test Api Message ">
+        <classes>
+            <class name="api.TestApiMessage"/>
+        </classes>
+    </test>
+
+    <test name="Test api login user">
+        <classes>
+            <class name="api.TestApiLoginUser"/>
+        </classes>
+    </test>
+
+</suite>

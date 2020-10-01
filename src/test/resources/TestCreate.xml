@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="create  users ">
+
+    <test name="Test create users">
+        <parameter name="quantity" value="10"/>
+        <classes>
+            <class name="api.load.TestCreate"/>
+        </classes>
+    </test>
+
+</suite>
