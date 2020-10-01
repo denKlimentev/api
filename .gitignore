@@ -1,0 +1,15 @@
+build
+.idea
+out
+logs
+allure-results
+target
+*.ipr
+*.iws
+*.iml
+.gradle
+.logs
+.project
+.classpath
+chromedriver.log
+.settings
