@@ -1,27 +1,52 @@
 package api;
 
+import logic.UserLogic;
 import logic.data.results.ClientsResult;
+import logic.data.results.ResponseResult;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import static logic.BaseData.CODE_200;
 import static logic.BaseData.CODE_500;
 
 public class TestApiLoginUser extends TestBase {
 
+    @BeforeMethod
+    public void precondition() {
+        testUser = new UserLogic();
+
+        testUser.precondition();
+        ResponseResult result = testUser.create(testUser.getUser());
+
+        Assert.assertEquals(
+                CODE_200,
+                result.getResultCode(),
+                " Whe don`t have expected result "
+                        + CODE_200
+                        + " Actual result : "
+                        + result.getResultCode()
+                        + " Body : " + result.getBody());
+    }
 
     @Test
-    public void createUser() {
-        testUser.create(CODE_200, testUser.getUser());
-    }
-
-    @Test(dependsOnMethods = "createUser")
     public void createUserNegative() {
-        testUser.create(CODE_500, testUser.getUser());
+
+        ResponseResult result = testUser.create(testUser.getUser());
+
+        Assert.assertEquals(CODE_500,
+                result.getResultCode(),
+                " Whe don`t have expected result "
+                        + CODE_500
+                        + " Actual result : "
+                        +  result.getResultCode());
+
     }
 
 
-    @Test(dependsOnMethods = "createUser")
+    @Test()
     public void getUser() {
 
         ClientsResult userList = testUser.getUsersList();
@@ -41,17 +66,35 @@ public class TestApiLoginUser extends TestBase {
     }
 
 
-    @Test(dependsOnMethods = "createUser")
+    @Test()
     public void login() {
 
-      id =  testUser.login();
+        id = testUser.login();
 
-      Assert.assertNotNull(id, "We don`t get session id");
+        Assert.assertNotNull(id, "We don`t get session id");
 
     }
 
-    @Test(dependsOnMethods = "createUser")
+
+    @Test()
     public void loginOut() {
-        testUser.loginOut();
+
+        id = testUser.login();
+
+        Assert.assertNotNull(id, "We don`t get session id");
+
+        int statusCode = testUser.loginOut();
+
+        asserts = new SoftAssert();
+
+        asserts.assertEquals(
+                CODE_200,
+                statusCode,
+                " Whe don`t have expected result "
+                        + CODE_200
+                        + "Actual result : "
+                        + statusCode);
+
+        asserts.assertAll();
     }
 }

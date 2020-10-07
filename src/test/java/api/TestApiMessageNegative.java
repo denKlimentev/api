@@ -1,14 +1,17 @@
 package api;
 
 import logic.UserLogic;
-import org.testng.annotations.BeforeTest;
+import logic.data.results.MessageResult;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import static logic.BaseData.CODE_401;
 
 public class TestApiMessageNegative extends TestBase {
 
-    @BeforeTest
+    @BeforeMethod
     public void precondition() {
         testUser = new UserLogic();
     }
@@ -16,8 +19,18 @@ public class TestApiMessageNegative extends TestBase {
 
     @Test()
     public void getMessageWithoutLogin() {
-        String randomNumbers  = "123";
-        testUser.senMessage(CODE_401, randomNumbers);
+        String randomNumbers = "123";
+        MessageResult result = testUser.sendMessage(randomNumbers);
+        String message = result.getResultCode();
+
+
+        Assert.assertEquals(
+                message,
+                "Unauthorized",
+                " Whe don`t have message Unauthorized" + result.getResultCode());
+
+
+
     }
 
 }

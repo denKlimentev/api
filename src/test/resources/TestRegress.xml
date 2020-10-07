@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Test api " parallel="tests" thread-count="5" >
+<suite name="Test api ">
 
     <test name="Test Test Api Message Negative">
         <classes>

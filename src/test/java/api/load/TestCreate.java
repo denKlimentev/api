@@ -1,12 +1,13 @@
 package api.load;
 
+import api.TestBase;
 import logic.UserLogic;
 import org.testng.Assert;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class TestCreate  {
+public class TestCreate extends TestBase {
 
     @Parameters({"quantity"})
     @Test()
@@ -14,16 +15,16 @@ public class TestCreate  {
 
         UserLogic testUser = new UserLogic();
 
-        int bedore = testUser.getUsersList().getClients().size();
+        int before = testUser.getUsersList().getClients().size();
 
         testUser.create(quantity);
 
         int after = testUser.getUsersList().getClients().size();
 
         Assert.assertTrue(
-                bedore == (after-quantity),
+                before == (after-quantity),
                 "Whe dont create needed quantity users : count before - "
-                        + bedore
+                        + before
                         + " count after  - "
                         +after
                 );
