@@ -1,9 +1,9 @@
-package logic.data;
+package data;
 
 import lombok.Value;
 
 @Value
-public class User {
+public class UserData {
 
     String fullName;
     String username;

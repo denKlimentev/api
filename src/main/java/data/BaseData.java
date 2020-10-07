@@ -1,9 +1,8 @@
-package logic;
+package data;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
-import io.restassured.specification.RequestSpecification;
 
 import java.io.IOException;
 import java.util.Properties;

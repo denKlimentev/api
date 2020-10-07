@@ -1,23 +1,22 @@
 package api;
 
-import logic.UserLogic;
-import logic.data.results.ClientsResult;
-import logic.data.results.ResponseResult;
+import logic.User;
+import data.results.ClientsResult;
+import data.results.ResponseResult;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static logic.BaseData.CODE_200;
-import static logic.BaseData.CODE_500;
+import static data.BaseData.CODE_200;
+import static data.BaseData.CODE_500;
 
 public class TestApiLoginUser extends TestBase {
 
     @BeforeMethod
     public void precondition() {
 
-        testUser = new UserLogic();
+        testUser = new User();
 
         testUser.precondition();
         ResponseResult result = testUser.create(testUser.getUser());

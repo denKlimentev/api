@@ -1,19 +1,16 @@
 package api;
 
-import logic.UserLogic;
-import logic.data.results.MessageResult;
+import logic.User;
+import data.results.MessageResult;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
-import static logic.BaseData.CODE_401;
 
 public class TestApiMessageNegative extends TestBase {
 
     @BeforeMethod
     public void precondition() {
-        testUser = new UserLogic();
+        testUser = new User();
     }
 
 

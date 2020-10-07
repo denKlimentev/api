@@ -1,7 +1,7 @@
 package api.load;
 
 import api.TestBase;
-import logic.UserLogic;
+import logic.User;
 import org.testng.Assert;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -13,7 +13,7 @@ public class TestCreate extends TestBase {
     @Test()
     public void createUser(@Optional int quantity) {
 
-        UserLogic testUser = new UserLogic();
+        User testUser = new User();
 
         int before = testUser.getUsersList().getClients().size();
 

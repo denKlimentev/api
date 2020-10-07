@@ -3,10 +3,10 @@ package logic;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import logic.data.results.ClientsResult;
-import logic.data.results.MessageResult;
-import logic.data.User;
-import logic.data.results.ResponseResult;
+import data.results.ClientsResult;
+import data.results.MessageResult;
+import data.UserData;
+import data.results.ResponseResult;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j;
@@ -14,16 +14,16 @@ import lombok.extern.log4j.Log4j;
 import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
-import static logic.BaseData.*;
+import static data.BaseData.*;
 
 @Log4j
-public class UserLogic {
+public class User {
 
     @Getter
     private String jsonUser;
 
     @Getter
-    private User user;
+    private UserData user;
 
     public void precondition() {
 
@@ -37,7 +37,7 @@ public class UserLogic {
         log.info("generate userName : " + userName);
         String surname = UUID.randomUUID().toString();
         log.info("generate surname : " + surname);
-        user = new User(userName, surname);
+        user = new UserData(userName, surname);
 
     }
 
@@ -64,7 +64,7 @@ public class UserLogic {
 
 
     @SneakyThrows
-    public ResponseResult create(User user) {
+    public ResponseResult create(UserData user) {
 
         ResponseResult resultRes = new ResponseResult();
         jsonUser = new ObjectMapper().writeValueAsString(user);

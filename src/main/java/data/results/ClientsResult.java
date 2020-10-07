@@ -1,4 +1,4 @@
-package logic.data.results;
+package data.results;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
