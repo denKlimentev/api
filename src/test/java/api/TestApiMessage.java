@@ -9,34 +9,20 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static data.BaseData.CODE_200;
-import static data.BaseData.OK;
+import static data.BaseData.*;
 
 public class TestApiMessage extends TestBase {
 
-    @BeforeMethod
-    public void precondition() {
-        testUser = new User();
-        testUser.precondition();
-
-        ResponseResult result = testUser.create(testUser.getUser());
-
-        Assert.assertEquals(
-                CODE_200,
-                result.getResultCode(),
-                " Whe don`t have message 200");
-
-         result = testUser.login();
-
-        Assert.assertNotNull(result.getHeader(), "We don`t get session id");
-
-    }
-
+    private User testUser;
 
     @Test()
     public void getMessageFirstTime() {
 
-        MessageResult result = testUser.sendMessage(id);
+        testUser = precondition();
+
+        ResponseResult loginResult =  testUser.login();
+
+        MessageResult result = testUser.sendMessage(loginResult.getHeader());
 
         asserts = new SoftAssert();
 

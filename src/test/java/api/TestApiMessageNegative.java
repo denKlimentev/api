@@ -8,8 +8,10 @@ import org.testng.annotations.Test;
 
 public class TestApiMessageNegative extends TestBase {
 
+    private User testUser;
+
     @BeforeMethod
-    public void precondition() {
+    public void create() {
         testUser = new User();
     }
 
@@ -25,8 +27,6 @@ public class TestApiMessageNegative extends TestBase {
                 message,
                 "Unauthorized",
                 " Whe don`t have message Unauthorized" + result.getResultCode());
-
-
 
     }
 

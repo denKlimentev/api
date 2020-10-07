@@ -43,6 +43,8 @@ public class BaseData {
                 .setPort(PORT)
                 .log(LogDetail.ALL)
                 .build();
+
+
       }
 
 }

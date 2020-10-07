@@ -5,10 +5,9 @@ import lombok.*;
 
 import java.util.ArrayList;
 
-@Getter
-@Setter
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@EqualsAndHashCode
+@Data
 public class ClientsResult {
 
     private String resultCode;

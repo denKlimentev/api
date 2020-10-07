@@ -64,9 +64,9 @@ public class User {
 
 
     @SneakyThrows
-    public ResponseResult create(UserData user) {
+    public ResponseResult<MessageResult> create(UserData user) {
 
-        ResponseResult resultRes = new ResponseResult();
+        ResponseResult<MessageResult> resultRes = new ResponseResult<MessageResult>();
         jsonUser = new ObjectMapper().writeValueAsString(user);
 
         Response result;
@@ -79,7 +79,7 @@ public class User {
                 .post(HOST_CLIENTS)
                 .then().extract().response();
 
-    resultRes.setBody(String.valueOf(result.getBody()));
+    resultRes.setBody(result.getBody().as(MessageResult.class));
     resultRes.setResultCode(result.getStatusCode());
 
     return resultRes;
