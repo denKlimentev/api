@@ -15,5 +15,5 @@ public class ResponseResult {
 
     private int resultCode;
     private String body;
-
+    private String header;
 }

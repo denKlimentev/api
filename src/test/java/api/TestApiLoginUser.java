@@ -16,6 +16,7 @@ public class TestApiLoginUser extends TestBase {
 
     @BeforeMethod
     public void precondition() {
+
         testUser = new UserLogic();
 
         testUser.precondition();
@@ -41,6 +42,7 @@ public class TestApiLoginUser extends TestBase {
                 " Whe don`t have expected result "
                         + CODE_500
                         + " Actual result : "
+
                         +  result.getResultCode());
 
     }
@@ -68,20 +70,28 @@ public class TestApiLoginUser extends TestBase {
 
     @Test()
     public void login() {
+        ResponseResult result = testUser.login();
 
-        id = testUser.login();
+        Assert.assertEquals(
+                CODE_200,
+                result.getResultCode(),
+                " Whe don`t have expected result "
+                        + CODE_200
+                        + " Actual result : "
+                        + result.getResultCode()
+                        + " Body : " + result.getBody());
 
-        Assert.assertNotNull(id, "We don`t get session id");
+
+        Assert.assertNotNull(result.getHeader(), "We don`t get session id");
 
     }
 
 
     @Test()
     public void loginOut() {
+        ResponseResult result = testUser.login();
 
-        id = testUser.login();
-
-        Assert.assertNotNull(id, "We don`t get session id");
+        Assert.assertNotNull(result.getHeader(), "We don`t get session id");
 
         int statusCode = testUser.loginOut();
 

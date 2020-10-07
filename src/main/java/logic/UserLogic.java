@@ -86,23 +86,27 @@ public class UserLogic {
     }
 
     @SneakyThrows
-    public String login() {
+    public ResponseResult login() {
+
+        ResponseResult resultRes = new ResponseResult();
 
         log.info("login");
-
-        String id = given()
+        Response result;
+        result = given()
                 .body(new ObjectMapper().writeValueAsString(user.getUsername()))
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .when()
                 .post(HOST_LOGIN)
-                .then()
-                .extract()
-                .header(X_SESSION_ID);
+                .then().extract().response();
 
-        log.info(" x-session-id   : " + id);
+        log.info(" x-session-id   : " + result.header(X_SESSION_ID));
 
-        return id;
+
+        resultRes.setBody(String.valueOf(result.getBody()));
+        resultRes.setResultCode(result.getStatusCode());
+        resultRes.setHeader(result.header(X_SESSION_ID));
+        return resultRes;
 
 
     }

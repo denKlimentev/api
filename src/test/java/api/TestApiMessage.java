@@ -27,9 +27,9 @@ public class TestApiMessage extends TestBase {
                 result.getResultCode(),
                 " Whe don`t have message 200");
 
-        id = testUser.login();
+         result = testUser.login();
 
-        Assert.assertNotNull(id, "We don`t get session id");
+        Assert.assertNotNull(result.getHeader(), "We don`t get session id");
 
     }
 
